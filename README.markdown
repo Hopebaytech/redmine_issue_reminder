@@ -1,7 +1,7 @@
 ﻿Redmine Issue Reminder
 ==============
 
-Compatible with redmine 2.5.1
+Compatible with redmine 2.6.1.stable
 
 Plugin provides an easy to use interface to set up automatic email reminder to every project. 
 Every reminder uses a custom query with all their filter options to select issues 

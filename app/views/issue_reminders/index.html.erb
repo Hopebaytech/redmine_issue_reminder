@@ -14,11 +14,11 @@
         <tr>
             <td><%= link_to(h(reminder.query.name), :controller => 'queries', :action => 'edit', :id => reminder.query) %></td>
             <td><%= reminder.roles.collect {|r| r.name}.join(',') %></td>
-            <td><%= Reminder.interval_value_display(reminder.interval,reminder.interval_value) %></td>
+            <td><%= IssueReminder.interval_value_display(reminder.interval,reminder.interval_value) %></td>
             <td class="buttons">
                 <%= link_to_function l(:button_edit), "$('#reminder-#{reminder.id}-edit').show()", :class => 'icon icon-edit' %>
                 <%= link_to l(:button_delete),
-                    {:controller => 'reminders', :action => :destroy, :id => reminder},
+                    {:controller => 'issue_reminders', :action => :destroy, :id => reminder},
                     {:confirm => l(:reminder_delete_confirmation), :method => :delete, :remote => true,
                      :title => l(:button_delete), :class => 'icon icon-del'} %>
             </td>
