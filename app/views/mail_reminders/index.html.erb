@@ -41,3 +41,24 @@
     <%= render :partial => 'form', :locals => { :reminder => @reminder, :project => @project } %>
   </fieldset>
 </div>
+
+<script type="text/javascript">
+  (function( $ ){
+    $(function() {
+      Element = function(){}
+      Element.update = function(id,html){$('#'+id).html(html);}
+      $('div[id^=reminder_interval-] select').change(function(event){
+        val = $(this).val();
+        reminder = $(this).closest('div').attr('id').replace('reminder_interval-', '');
+        $.ajax({
+          url: "mail_reminders/update_interval_values",
+          method: "POST",
+          data: {
+            interval: val,
+            mail_reminder_id: reminder
+          }
+        });
+      });
+    });
+  })( jQuery );
+</script>

@@ -5,14 +5,15 @@
     <%= f.select :query_id, queries_for_options(project.id) %>
     <%= link_to l(:label_query_new), new_query_path, :class => 'icon icon-add' %>
   </p>
-  <p>
-    <%= f.label l(:interval) %>:
-    <%= f.select :interval, reminders_intervals_for_options,:data => {:remote => true, :url  => {:action => "update_interval_values"},
-              :with => "'interval='+value +'&mail_reminder_id=#{reminder.new_record? ? 'new' : reminder.id}'"}
-    %>
-  </p>
-    <%= render :partial => 'interval_values',
-               :locals => { :possible_values => MailReminder.interval_values_for(reminder.new_record? ? :daily : reminder.interval),
+  <div id="reminder_interval-<%= reminder.new_record? ? 'new' : reminder.id %>">
+    <%= f.label l(:interval) %>
+    <%= render :partial => 'interval',
+               :locals => { :possible_values => reminders_intervals_for_options,
+                            :selected_value => reminder.interval,
+                            :reminder => reminder } %>
+  </div>
+  <%= render :partial => 'interval_values',
+             :locals => { :possible_values => MailReminder.interval_values_for(reminder.new_record? ? :daily : reminder.interval),
                             :selected_value => reminder.interval_value,
                             :reminder => reminder } %>
     <p>

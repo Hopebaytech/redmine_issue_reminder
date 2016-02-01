@@ -134,9 +134,6 @@ Thanks for the contribution.
 
 ## To-Do List
 
-- Fix: changing interval type updates interval value @ "New reminder"
-- Fix: cancel button @ "Edit"
-- Fix: load value per reminder @ "Edit"
 - Feature: `rake reminder:exec[reset_scheduler]`
 
 ## Changelog
