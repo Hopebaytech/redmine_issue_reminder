@@ -1,5 +1,8 @@
 language: ruby
-cache: bundler
+cache:
+  bundler: true
+  directories:
+    - ~/.rvm
 before_install:
   - "echo 'gem: --no-rdoc --no-ri' > ~/.gemrc"
   - gem install bundler
