@@ -3,8 +3,9 @@ matrix:
   include:
     - env: REDMINE_VERSION=3.4.2 VERBOSE=yes
       rvm: 1.9.3
-      before_script:
+      install:
         - rvm 1.9.3 do gem install mime-types -v 2.6.2
+        - bundle install --jobs=3 --retry=3
     - env: REDMINE_VERSION=3.4.2 VERBOSE=yes
       rvm: 2.0.0
     - env: REDMINE_VERSION=3.4.2 VERBOSE=yes
@@ -17,8 +18,9 @@ matrix:
       rvm: 2.4
     - env: REDMINE_VERSION=3.3.4 VERBOSE=yes
       rvm: 1.9.3
-      before_script:
+      install:
         - rvm 1.9.3 do gem install mime-types -v 2.6.2
+        - bundle install --jobs=3 --retry=3
     - env: REDMINE_VERSION=3.3.4 VERBOSE=yes
       rvm: 2.0.0
     - env: REDMINE_VERSION=3.3.4 VERBOSE=yes
@@ -29,8 +31,9 @@ matrix:
       rvm: 2.3
     - env: REDMINE_VERSION=3.2.7 VERBOSE=yes
       rvm: 1.9.3
-      before_script:
+      install:
         - rvm 1.9.3 do gem install mime-types -v 2.6.2
+        - bundle install --jobs=3 --retry=3
     - env: REDMINE_VERSION=3.2.7 VERBOSE=yes
       rvm: 2.0.0
     - env: REDMINE_VERSION=3.2.7 VERBOSE=yes
