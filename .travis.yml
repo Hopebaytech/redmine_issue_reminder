@@ -31,6 +31,10 @@ matrix:
       rvm: 2.1
     - env: REDMINE_VERSION=3.2.7 VERBOSE=yes
       rvm: 2.2
+
+before_deploy:
+  - rvm 1.9.3 do gem install mime-types -v 2.6.2
+
 script:
   - export PLUGIN=redmine_mail_reminder
   - export WORKSPACE=$(pwd)/workspace
