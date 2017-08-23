@@ -1,13 +1,36 @@
 language: ruby
-rvm:
-  - 2.3
-  - 2.2
-  - 2.1
-branches:
-  only:
-    - testing
-env:
-  - REDMINE_VERSION=3.3.2 VERBOSE=yes
+matrix:
+  include:
+    - env: REDMINE_VERSION=3.4.2 VERBOSE=yes
+      rvm: 1.9.3
+    - env: REDMINE_VERSION=3.4.2 VERBOSE=yes
+      rvm: 2.0.0
+    - env: REDMINE_VERSION=3.4.2 VERBOSE=yes
+      rvm: 2.1
+    - env: REDMINE_VERSION=3.4.2 VERBOSE=yes
+      rvm: 2.2
+    - env: REDMINE_VERSION=3.4.2 VERBOSE=yes
+      rvm: 2.3
+    - env: REDMINE_VERSION=3.4.2 VERBOSE=yes
+      rvm: 2.4
+    - env: REDMINE_VERSION=3.3.4 VERBOSE=yes
+      rvm: 1.9.3
+    - env: REDMINE_VERSION=3.3.4 VERBOSE=yes
+      rvm: 2.0.0
+    - env: REDMINE_VERSION=3.3.4 VERBOSE=yes
+      rvm: 2.1
+    - env: REDMINE_VERSION=3.3.4 VERBOSE=yes
+      rvm: 2.2
+    - env: REDMINE_VERSION=3.3.4 VERBOSE=yes
+      rvm: 2.3
+    - env: REDMINE_VERSION=3.2.7 VERBOSE=yes
+      rvm: 1.9.3
+    - env: REDMINE_VERSION=3.2.7 VERBOSE=yes
+      rvm: 2.0.0
+    - env: REDMINE_VERSION=3.2.7 VERBOSE=yes
+      rvm: 2.1
+    - env: REDMINE_VERSION=3.2.7 VERBOSE=yes
+      rvm: 2.2
 script:
   - export PLUGIN=redmine_mail_reminder
   - export WORKSPACE=$(pwd)/workspace
