@@ -2,8 +2,6 @@ class MailReminderMailer < ActionMailer::Base
   helper :application
   helper :issues
   helper :mail_reminders
-  helper :sort
-  include SortHelper
   include Redmine::I18n
 
   def self.default_url_options
@@ -30,10 +28,6 @@ class MailReminderMailer < ActionMailer::Base
     @queries_data = []
     queries_data.each do |project, query|
       query.project = project
-      sort_init(query.sort_criteria.empty? ? [['id', 'desc']] : query.sort_criteria)
-      @sort_criteria = SortCriteria.new
-      @sort_criteria.available_criteria = query.sortable_columns
-      @sort_criteria.criteria = @sort_default if @sort_criteria.empty?
       issues = query.issues(:include => [:assigned_to, :tracker, :priority, :category, :fixed_version])
       @queries_data << [project, query, issues] if issues.any?
     end
