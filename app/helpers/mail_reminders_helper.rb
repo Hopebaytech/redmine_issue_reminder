@@ -27,6 +27,8 @@ module MailRemindersHelper
     when 'Fixnum', 'Float'
       if column.name == :done_ratio
         progress_bar(value, :width => '80px')
+	  elsif column.name == :id
+	    link_to h(value.to_s), issue_url(issue)
       else
         h(value.to_s)
       end
