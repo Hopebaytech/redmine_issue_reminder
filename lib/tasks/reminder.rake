@@ -6,8 +6,8 @@ namespace :reminder do
     mail_data = Hash.new{|h, k| h[k] = Set.new}
     reminders = MailReminder.select do |rem|
       if rem.project
-        next(false) until rem.project.enabled_module_names.include?('issue_reminder')
-        next(false) until rem.query.present?
+        next(false) unless rem.project.enabled_module_names.include?('issue_reminder')
+        next(false) unless rem.query.present?
         print "Project \"#{ rem.project.name }\" with query \"#{ rem.query.name }\" "
         if args.test == "test"
           puts "\t is forced processing under [test] mode.".yellow
