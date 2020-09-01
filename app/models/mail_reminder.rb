@@ -63,6 +63,16 @@ class MailReminder < ActiveRecord::Base
     end
   end
 
+  def last_execute
+    result = Time.now
+    if executed_at.nil? || (updated_at > executed_at)
+      result = updated_at
+    else
+      result = executed_at
+    end
+    return result
+  end
+
   def execute?
     case interval
     when "daily"
@@ -77,22 +87,21 @@ class MailReminder < ActiveRecord::Base
   end
 
   def execute_daily?
-    comparision_date = Time.now
-    if executed_at.nil? || (updated_at > executed_at)
-      comparision_date = updated_at
-    else
-      comparision_date = executed_at
-    end
-
-    diff = ((Time.now - comparision_date) / 1.day).round.to_i
+    return false if last_execute.to_date == DateTime.current.to_date
+    
+    diff = ((Time.now - last_execute) / 1.day).round.to_i
     return diff >= interval_value + 1
   end
 
   def execute_weekly?
+    return false if last_execute.to_date == DateTime.current.to_date
+
     return Time.now.wday == interval_value
   end
 
   def execute_monthly?
+    return false if last_execute.to_date == DateTime.current.to_date
+
     if Time::days_in_month(Time.now.month) < interval_value
       if Time.now.mday == Time.days_in_month(Time.now.month)
         return true

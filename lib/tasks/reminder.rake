@@ -35,9 +35,6 @@ namespace :reminder do
         end
         rem.executed_at = Time.now if args.test != "test"
         rem.save
-
-        print "Project \"#{ rem.project.name }\" with query \"#{ rem.query.name }\" "
-        puts "\t done.".light_green
       end
 
       # Fixed: reminder mails are not sent when delivery_method is :async_smtp (#5058).
