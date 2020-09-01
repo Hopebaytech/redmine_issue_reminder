@@ -31,10 +31,13 @@ namespace :reminder do
             reject {|m| m.user.nil? || m.user.locked?}.
             each do |member|
               mail_data[member.user] << [rem.project, rem.query]
-              rem.executed_at = Time.now if args.test != "test"
-              rem.save
             end
         end
+        rem.executed_at = Time.now if args.test != "test"
+        rem.save
+
+        print "Project \"#{ rem.project.name }\" with query \"#{ rem.query.name }\" "
+        puts "\t done.".light_green
       end
 
       # Fixed: reminder mails are not sent when delivery_method is :async_smtp (#5058).
