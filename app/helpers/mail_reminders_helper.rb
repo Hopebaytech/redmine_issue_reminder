@@ -1,4 +1,7 @@
 module MailRemindersHelper
+
+  include QueriesHelper
+
   def queries_for_options(project_id)
     # Project specific queries and global queries
     IssueQuery.visible.order("#{Query.table_name}.name ASC").
@@ -49,7 +52,8 @@ module MailRemindersHelper
     when 'Issue'
       link_to value.subject, issue_url(value)
     else
-      h(value)
+      column_content(column, issue)
+      # h(value)
     end
   end
 end
