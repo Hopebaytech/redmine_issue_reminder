@@ -1,4 +1,4 @@
-class RenameRemindersToIssueReminders < ActiveRecord::Migration
+class RenameRemindersToIssueReminders < ActiveRecord::Migration[5.2]
   def self.up
     rename_table :reminders, :issue_reminders
   end

@@ -7,7 +7,7 @@ if Rails.env == 'development'
 end
 
 # Tentative de faire fonctionner le plugin sous Rails 3
-ActionDispatch::Callbacks.to_prepare do
+ActiveSupport::Reloader.to_prepare do
     # use require_dependency if you plan to utilize development mode
     require 'boards_watchers_patches'
 end

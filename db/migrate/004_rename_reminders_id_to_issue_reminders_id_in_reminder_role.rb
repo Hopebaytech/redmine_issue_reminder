@@ -1,4 +1,4 @@
-class RenameRemindersIdToIssueRemindersIdInReminderRole < ActiveRecord::Migration
+class RenameRemindersIdToIssueRemindersIdInReminderRole < ActiveRecord::Migration[5.2]
   def self.up
     rename_column :reminder_roles, :reminder_id, :issue_reminder_id
   end

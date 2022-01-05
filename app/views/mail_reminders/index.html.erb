@@ -18,9 +18,9 @@
             <td class="buttons">
                 <%= link_to_function l(:button_edit), "$('#reminder-#{reminder.id}-edit').show()", :class => 'icon icon-edit' %>
                 <%= link_to l(:button_delete),
-                    {:controller => 'mail_reminders', :action => :destroy, :id => reminder},
-                    {:confirm => l(:reminder_delete_confirmation), :method => :delete, :remote => true,
-                     :title => l(:button_delete), :class => 'icon icon-del'} %>
+                    {:controller => 'mail_reminders', :action => :destroy, :id => reminder}, data: 
+                    {:confirm => l(:reminder_delete_confirmation)}, :method => :delete,
+                     :title => l(:button_delete), :class => 'icon icon-del'%>
             </td>
         </tr>
         <tr id="reminder-<%= reminder.id %>-edit" style="display:none">
@@ -34,7 +34,6 @@
     </tbody>
   </table>
 </div>
-
 <div class="splitcontentright">
   <fieldset>
     <legend><%= l(:new_reminder) %></legend>
@@ -45,8 +44,6 @@
 <script type="text/javascript">
   (function( $ ){
     $(function() {
-      Element = function(){}
-      Element.update = function(id,html){$('#'+id).html(html);}
       $('div[id^=reminder_interval-] select').change(function(event){
         val = $(this).val();
         reminder = $(this).closest('div').attr('id').replace('reminder_interval-', '');
@@ -56,6 +53,9 @@
           data: {
             interval: val,
             mail_reminder_id: reminder
+          },
+          success: function(response){
+            $("#interval_values-"+reminder).html(response)
           }
         });
       });

@@ -1,4 +1,4 @@
-class CreateReminders < ActiveRecord::Migration
+class CreateReminders < ActiveRecord::Migration[5.2]
   def self.up
     create_table :reminders do |t|
       t.column :project_id, :integer

@@ -112,6 +112,4 @@ class MailReminder < ActiveRecord::Base
       return Time.now.mday == interval_value
     end
   end
-
-  attr_accessible :project_id, :query_id, :interval
 end
