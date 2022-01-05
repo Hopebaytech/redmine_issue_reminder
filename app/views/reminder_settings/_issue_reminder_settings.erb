@@ -2,3 +2,11 @@
   <%= content_tag(:label, l(:mail_subject)) %>
   <%= text_field_tag 'settings[issue_reminder_mail_subject]', @settings['issue_reminder_mail_subject'], :size => 50 %>
 </p>
+<p>
+  <%= content_tag(:label, l(:setting_emails_header)) %>
+  <%= text_area_tag 'settings[issue_reminder_mail_header]', @settings['issue_reminder_mail_header'], rows: 5 %>
+</p>
+<p>
+  <%= content_tag(:label, l(:setting_emails_footer)) %>
+  <%= text_area_tag 'settings[issue_reminder_mail_footer]', @settings['issue_reminder_mail_footer'], rows: 5 %>
+</p>
